@@ -1,0 +1,132 @@
+<!-- src/ìndex.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
+	<script src="./js/pdf.min.js"></script>
+	<script src="./js/jquery.min.js"></script>
+	<link rel="stylesheet" href="./css/toolbar.css">
+	<link rel="stylesheet" href="./css/pdfviewer.min.css">
+	<link rel="stylesheet" href="./css/bootstrap.css">
+	<link rel="stylesheet" href="./css/material.icons.min.css">
+	<script src="./js/pdfviewer.min.js"></script>
+	<script src="./js/bootstrap.min.js"></script>
+	<script src="./js/opencv.js"></script>
+	<script src="./js/bootstrap.min.js"></script>
+	<script src="./js/fabric.min.js"></script>
+	<title>Monsigneur - A PDF reader with built in sign capabilities</title>
+</head>
+
+<body>
+	<div class="pdfviewer">
+		<div class="pdfjs-toolbar">
+			<button id="toggle-thumbs" class="pushed"><i class="material-icons-outlined">view_sidebar</i></button>
+			<div class="v-sep"></div>
+			<input id="pageno" class="pageno" type="number" class="form-control form-control-sm d-inline w-auto"
+				value="1" min="1" max="1000">
+			<span id="pagecount" class="pageno"></span>
+			<div class="mr-2 v-sep"></div>
+			<button id="scroll-to-first"><i class="material-icons-outlined">vertical_align_top</i></button>
+			<button id="scroll-to-last"><i class="material-icons-outlined">vertical_align_bottom</i></button>
+
+			<div class="divider"></div>
+			<button id="zoomin"><i class="material-icons-outlined">add</i></button>
+			<div class="v-sep"></div>
+			<button id="zoomout"><i class="material-icons-outlined">remove</i></button>
+			<div class="dropdown">
+				<div class="dropdown-value" onclick="this.parentNode.classList.toggle('show');">
+					<span class="zoomval">100%</span>
+					<i class="material-icons-outlined">
+						keyboard_arrow_down
+					</i>
+				</div>
+				<div class="dropdown-content" onclick="this.parentNode.classList.toggle('show');">
+					<a id="fitzoom">Fit Page</a>
+					<a id="widthzoom">Fit Width</a>
+					<a id="50-zoom">50%</a>
+					<a id="75-zoom">75%</a>
+					<a id="100-zoom">100%</a>
+					<a id="125-zoom">125%</a>
+					<a id="150-zoom">150%</a>
+					<a id="200-zoom">200%</a>
+					<a id="300-zoom">300%</a>
+				</div>
+			</div>
+			<div class="divider"></div>
+			<button id="pre-process"><i class="material-icons-outlined">psychology</i></button>
+			<label class="button" for="opendoc"><i class="material-icons-outlined">file_open</i></label>
+			<input id="opendoc" type="file" accept="application/pdf" class="d-none">
+			<div class="v-sep"></div>
+			<button id="rotate-90-anticlockwise"><i class="material-icons-outlined">rotate_90_degrees_ccw</i></button>
+			<button id="rotate-90-clockwise"><i class="material-icons-outlined">rotate_90_degrees_cw</i></button>
+			<div class="v-sep"></div>
+			<button id="sign-with-dropbox" class="sign-with-dropbox"><em class="signing"><i class="material-icons-outlined">signature</i> Sign
+					with Dropbox</em></button>
+
+			<!-- <button id="horizontal-pages"><i class="material-icons-outlined">more_horiz</i></button> -->
+		</div>
+		<div class="pdfviewer-container">
+			<div class="thumbnails pdfjs-viewer">
+			</div>
+			<div class="maindoc pdfjs-viewer">
+				<div class="pdfpage placeholder">
+					<p class="my-auto mx-auto">Loading...</p>
+				</div>
+			</div>
+			<div class="sidebar pdfjs-viewer hide">
+				<div class="container">
+					<div class="form-floating form-group mt-2 mb-2">
+						<input id="name" class="form-control" value="Signer One"></input>
+						<label for="name">Signers (comma separated)</label>
+						<!-- <div class="spinner-border spinner-border-sm"></div> -->
+					</div>
+					<div class="form-floating form-group mt-2 mb-2">
+						<input id="email" class="form-control" value="your@email.com"></input>
+						<label for="email">Emails (comma separated)</label>
+						<!-- <div class="spinner-border spinner-border-sm"></div> -->
+					</div>
+					<div class="form-floating form-group mt-2 mb-2">
+						<input id="ccemail" class="form-control" value="others@email.com"></input>
+						<label for="ccemail">CC Emails (comma separated)</label>
+						<!-- <div class="spinner-border spinner-border-sm"></div> -->
+					</div>
+					<div class="form-floating form-group is-loading mt-2 mb-2">
+						<input id="subject" class="form-control" value="Attention - Please Sign this Cleaning Service Contract"></input>
+						<label for="subject">Subject [Chat GPT]</label>
+						<div class="spinner-border spinner-border-sm"></div>
+					</div>
+					<div class="form-floating form-group is-loading mt-2 mb-2">
+						<input id="title" class="form-control" value="Cleaning Service Contract"></input>
+						<label for="title">Title [Chat GPT]</label>
+						<div class="spinner-border spinner-border-sm"></div>
+					</div>
+					<div class="form-floating form-group has-validation mt-2 mb-2">
+						<input type="date" id="date" class="form-control" value="2023-10-11" min="2023-10-11" max="2024-10-11"></input>
+						<label for="date">Expiration Date</label>
+					</div>
+					<div class="form-floating form-group is-loading mt-2 mb-2">
+						<textarea id="summary" class="form-control"></textarea>
+						<label for="summary">Message [Chat GPT]</label>
+						<div class="spinner-border spinner-border-sm"></div>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+						<label class="form-check-label" for="flexSwitchCheckDefault">Enable QES</label>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+						<label class="form-check-label" for="flexSwitchCheckDefault">Use Text Tags</label>
+					</div>
+					<button id="submit" class="btn btn-primary" type="submit">Send Signature Request</button>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	<script src="./js/toolbar.js"></script>
+	<script src="./renderer.js"></script>
+</body>
+
+</html>

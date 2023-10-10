@@ -1,0 +1,104 @@
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.material-icons-outlined{
+    color: indianred;
+}
+
+.pdfviewer {
+    height: 800px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.pdfviewer-container {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    overflow: hidden;
+    flex: 1;
+}
+
+.sidebar {
+    width: 252px !important;
+    height: 100% !important;
+    background: #ccc !important;
+    transition: width 2s, opacity 2s, height 2s, transform 2s;
+    transition-timing-function: ease-in-out;
+}
+
+.sidebar textarea{
+    height: 100px !important;
+}
+
+.thumbnails {
+    width: 150px !important;
+    border: 1px solid #aaa;
+    border-right: 3px solid #999;
+    background: #ccc;
+    transition: width 2s, opacity 2s, height 2s, transform 2s;
+    transition-timing-function: ease-in-out;
+}
+
+.thumbnails .pdfpage.selected {
+    border: 2px solid #777;
+    border-radius: 2px;
+}
+
+.maindoc {
+    flex: 1;
+}
+
+.hide {
+    display: none;
+    transition: width 2s, opacity 2s, height 2s, transform 2s;
+    transition-timing-function: ease-in-out;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.numbering {
+    width: 100%;
+    text-align: center;
+    font-size: 0.75em;
+    margin-top: 0.25em;
+    color: #555;
+}
+
+.thumbnails .pdfpage {
+    margin-bottom: 2em !important;
+}
+
+.thumbnails .pdfpage.hidden {
+    opacity: 0.3;
+}
+
+.maindoc .pdfpage.hidden {
+    display: none;
+}
+
+#toggle-thumbs{
+    margin-right: 12px;
+}
+
+#pageno{
+    transform: scale(0.8);
+}
+
+.signing{
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    color: indianred;
+}
+
+.signing>.material-icons-outlined{
+    margin-right: 5px;
+}

@@ -1,0 +1,19 @@
+{
+  "name": "monsigneur",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "pdfjs-dist": "^3.11.174"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^6.4.2",
+    "electron-builder": "^24.6.4"
+  }
+}
